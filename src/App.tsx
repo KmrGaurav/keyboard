@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Keyboard, { letKeyboardHandleSetState } from './Keyboard';
+
+const App: React.FC = () => {
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
+
+    console.log(firstName, lastName);
+
+    return (
+        <>
+            <input
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                onFocus={(e) => letKeyboardHandleSetState(setFirstName)}
+            />
+            <input
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                onFocus={(e) => letKeyboardHandleSetState(setLastName)}
+            />
+            <Keyboard />
+        </>
+    );
+};
 
 export default App;
